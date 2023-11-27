@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+        Jewellery
+{% endblock title %}| D&D
+
+
+{% block content %}
+
+<!--&lt;!&ndash; Product Details &ndash;&gt;-->
+<!--    <div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">-->
+
+<!--        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">-->
+
+<!--            &lt;!&ndash; Product Image &ndash;&gt;-->
+<!--            <div class="overflow-hidden">-->
+<!--                <img src="product-image.jpg" alt="Product Image" class="w-full h-auto">-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Product Description &ndash;&gt;-->
+<!--            <div>-->
+<!--                <h1 class="text-3xl font-semibold mb-4">Product Name</h1>-->
+<!--                <p class="text-gray-700 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam-->
+<!--                    ultricies-->
+<!--                    sem at dictum. In convallis libero eget sagittis. Quisque tempus.</p>-->
+
+<!--                <p class="text-lg text-gray-800 font-bold mb-2">$99.99</p>-->
+
+<!--                <div class="mb-6">-->
+<!--                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>-->
+<!--                    <input type="number"  name="quantity" class="w-1/4 px-4 py-2 border rounded-md"-->
+<!--                        value="1">-->
+<!--                </div>-->
+
+<!--                <button class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">Add to Cart</button>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Product Reviews Section &ndash;&gt;-->
+<!--        <div class="mt-8">-->
+<!--            <h2 class="text-xl font-semibold mb-4">Product Reviews</h2>-->
+<!--            <div class="border rounded-md p-4">-->
+<!--                &lt;!&ndash; Display product reviews here &ndash;&gt;-->
+<!--                <p>No reviews yet.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+
+ <!-- Product Grid -->
+    <div class="container mx-auto px-4 py-8">
+         {% if bedsheets %}
+        <h1 class="text-3xl font-semibold mb-6">All Products</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Product Cards -->
+            {% for product in bedsheets %}
+            <a href="{% url 'bedsheet_details' product.id %}" class="bg-white shadow-lg rounded-md overflow-hidden shadow-md transition-transform duration-300 transform hover:scale-105">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-60 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>
+                    <p class="text-lg text-gray-800 font-bold mb-2"><strong>&#2547;</strong> {{ product.price }}</p>
+                    <p class="text-lg text-gray-800 font-bold mb-2">Retings: </p>
+<!--                    <a href="{% url 'jewellery_details' product.id %}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700" >View Details</a>-->
+
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h1 class="text-3xl font-semibold mb-6">Nothing Found</h1>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+

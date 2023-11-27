@@ -1,0 +1,468 @@
+{% extends 'base.html' %}
+
+{% block title %}
+        Jewellery
+{% endblock title %}| D&D
+
+
+{% block content %}
+<h1>Here is all jewellery</h1>
+
+<div class="flex items-center justify-center p-4">
+  <button id="dropdownDefault" data-dropdown-toggle="dropdown"
+    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+    type="button">
+    Filter by category
+    <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <!-- Dropdown menu -->
+  <div id="dropdown" class="z-10 hidden w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
+    <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">
+      Category
+    </h6>
+    <ul class="space-y-2 text-sm " aria-labelledby="dropdownDefault">
+      <li class="flex items-center">
+        <a href="" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">All Products</a>
+      </li>
+
+      <li class="flex items-center">
+        <a href="" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Categories</a>
+      </li>
+
+
+    </ul>
+  </div>
+</div>
+
+<div>
+
+
+</div>
+
+<div class="container mx-auto py-8">
+    <div class="flex flex-wrap -mx-4">
+        <!-- Filters Sidebar -->
+        <aside class="w-full lg:w-1/4 px-4">
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold mb-4">Categories</h2>
+                <!-- Category Filters -->
+                <ul>
+                    <li class="mb-2">
+                            <a href="{% url 'jewellery' %}" class="inline-flex items-center">
+                                <span class="ml-2">All</span>
+                            </a>
+                    </li>
+                    {% for subcategory in subcategories %}
+                        <li class="mb-2">
+                            <a href="?subcategory={{ subcategory.name }}" class="inline-flex items-center">
+                                <span class="ml-2">{{ subcategory.name }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    <!-- Add more category filters -->
+                </ul>
+            </div>
+
+<!--            <div class="mb-8">-->
+<!--                <h2 class="text-lg font-semibold mb-4">Price Range</h2>-->
+<!--                &lt;!&ndash; Price Range Filters &ndash;&gt;-->
+<!--                <div class="flex items-center">-->
+<!--                    <input type="text" placeholder="Min Price" class="w-1/2 p-2 border rounded-l-md" />-->
+<!--                    <span class="mx-2">to</span>-->
+<!--                    <input type="text" placeholder="Max Price" class="w-1/2 p-2 border rounded-r-md" />-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <form method="GET" action="{% url 'jewellery' %}">
+                <h2 class="text-lg font-semibold mb-4">Price Range</h2>
+                <div class="flex items-center">
+                    <input type="text" name="min_price" placeholder="Min Price" class="w-1/2 p-2 border rounded-l-md" />
+                    <span class="mx-2">to</span>
+                    <input type="text" name="max_price" placeholder="Max Price" class="w-1/2 p-2 border rounded-r-md" />
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 mt-4">Apply Price Range</button>
+            </form>
+
+
+
+            <!-- Add more filters (brands, sizes, etc.) -->
+
+
+
+            <div class="my-8">
+                <h2 class="text-lg font-semibold mb-4">Ratings</h2>
+                <!-- Rating Filters -->
+                <ul>
+                    <li class="mb-2">
+                        <a href="?rating=5" class="inline-flex items-center">
+
+                            <span class="ml-1" style="font-size: 1.5em;"><span style="color: #FFD700;">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="?rating=4" class="inline-flex items-center">
+
+                            <span class="ml-1" style="font-size: 1.5em;"><span style="color: #FFD700;">&#9733;&#9733;&#9733;&#9733;&#9734;</span></span>
+                        </a>
+                    </li>
+
+
+                    <li class="mb-2">
+                        <a href="?rating=3" class="inline-flex items-center">
+
+                            <span class="ml-1" style="font-size: 1.5em;"><span style="color: #FFD700;">&#9733;&#9733;&#9733;&#9734;&#9734;</span></span>
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="?rating=2" class="inline-flex items-center">
+
+                            <span class="ml-1" style="font-size: 1.5em;"><span style="color: #FFD700;">&#9733;&#9733;&#9734;&#9734;&#9734;</span></span>
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="?rating=1" class="inline-flex items-center">
+
+                            <span class="ml-1" style="font-size: 1.5em;"><span style="color: #FFD700;">&#9733;&#9734;&#9734;&#9734;&#9734;</span></span>
+                        </a>
+                    </li>
+
+                    <!-- Repeat for other ratings -->
+                </ul>
+            </div>
+
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Apply Filters</button>
+        </aside>
+
+        <!-- Product List -->
+        <section class="w-full lg:w-3/4 px-4">
+            <!-- Display Products Here -->
+            {% if products %}
+            <h1 class="text-3xl font-semibold mb-6 border-b border-black">All Products</h1>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Product Cards -->
+                <!-- Product cards will go here based on applied filters -->
+                {% for product in products %}
+                    <a href="{% url 'jewellery_details' product.id %}" class="bg-white shadow-lg rounded-md overflow-hidden shadow-md transition-transform duration-300 transform hover:scale-105">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-60 object-cover">
+                        <div class="p-4">
+                            <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>
+                            <p class="text-lg text-gray-800 font-bold mb-2"><strong>&#2547;</strong> {{ product.price }}</p>
+                            <p class="text-md text-gray-500 mb-2">Ratings:
+                                {% if product.ratings %}
+
+                                {% for rating in star_ratings %}
+                                    {% if rating <= product.ratings %}
+                                            <i class="fa-solid fa-star" style="color: #fac400;"></i>
+                                    {% else %}
+                                            <i class="fa-regular fa-star" style="color: #fac400;"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                {% else %}
+
+                                (0)
+
+                                {% endif %}
+
+                            </p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <h1 class="text-3xl font-semibold mb-6 border-b border-black">Nothing Found</h1>
+            <img src="../../media/images/nai.gif" alt="" class=" mx-auto w-64 object-cover">
+            {% endif %}
+
+
+            <nav aria-label="Page navigation example" class="flex justify-center items-center mt-10 ">
+                <ul class="inline-flex -space-x-px text-sm ">
+                      {% if products.has_previous %}
+                          <li>
+                            <a href="?page={{ products.previous_page_number }}" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-300 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white">
+                                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+    </svg>
+                                Previous</a>
+                          </li>
+
+                      {% else %}
+                          <li>
+                            <a href="" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-300 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white disabled">
+                                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+    </svg>
+                                Previous</a>
+                          </li>
+                      {% endif %}
+
+                      {% for i in products.paginator.page_range %}
+                          {% if products.number == i %}
+                              <li class="active">
+                                  <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-300 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white active">{{i}}</a>
+                              </li>
+                          {% else %}
+                              <li class="">
+                                  <a href="?page={{i}}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-300 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white active">{{i}}</a>
+                              </li>
+
+                          {% endif %}
+                      {% endfor %}
+
+
+
+                      {% if products.has_next %}
+                          <li>
+                              <a href="?page={{ products.next_page_number }}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-300 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white">Next
+                              <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+    </svg>
+                              </a>
+                          </li>
+
+                      {% else %}
+                          <li class="disabled:opacity-75">
+                              <a href="" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-white dark:border-gray-300 dark:text-black dark:hover:bg-gray-700 dark:hover:text-white disabled">Next
+                              <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+    </svg>
+                              </a>
+                          </li>
+                      {% endif %}
+                </ul>
+            </nav>
+
+<!--<div class="pagination">-->
+<!--    <span class="step-links">-->
+<!--        {% if products.has_previous %}-->
+<!--&lt;!&ndash;            <a href="?page=1">&laquo; first</a>&ndash;&gt;-->
+<!--            <a href="?page={{ products.previous_page_number }}">previous</a>-->
+<!--        {% endif %}-->
+
+<!--        <span class="current">-->
+<!--            Page {{ products.number }} of {{ products.paginator.num_pages }}.-->
+<!--        </span>-->
+
+<!--        {% if products.has_next %}-->
+<!--            <a href="?page={{ products.next_page_number }}">next</a>-->
+<!--&lt;!&ndash;            <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>&ndash;&gt;-->
+<!--        {% endif %}-->
+<!--    </span>-->
+<!--</div>-->
+
+
+        </section>
+    </div>
+</div>
+
+
+
+<!--&lt;!&ndash; Filters Sidebar &ndash;&gt;-->
+<!--<aside class="w-full lg:w-1/4 px-4">-->
+<!--    <div class="mb-8">-->
+<!--        <h2 class="text-lg font-semibold mb-4">Categories</h2>-->
+<!--        &lt;!&ndash; Category Filters &ndash;&gt;-->
+<!--        <ul>-->
+<!--            {% for s_category in subcategories %}-->
+<!--                <li class="mb-2">-->
+<!--                    <a href="?category={{ s_category.name }}" class="inline-flex items-center">-->
+<!--                        <span class="ml-2">{{ s_category.name }}</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            {% endfor %}-->
+<!--            &lt;!&ndash; Add more category filters &ndash;&gt;-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Other Filters (Subcategories, Price Range, Ratings, etc.) &ndash;&gt;-->
+<!--    &lt;!&ndash; ... &ndash;&gt;-->
+<!--</aside>-->
+
+<!--&lt;!&ndash; Product List &ndash;&gt;-->
+<!--<section class="w-full lg:w-3/4 px-4">-->
+<!--    &lt;!&ndash; Display Products Here &ndash;&gt;-->
+<!--    {% if products %}-->
+<!--        <h1 class="text-3xl font-semibold mb-6 border-b border-black">All Products</h1>-->
+<!--        <hr>-->
+<!--        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">-->
+<!--            &lt;!&ndash; Product Cards &ndash;&gt;-->
+<!--            &lt;!&ndash; Product cards will go here based on applied filters &ndash;&gt;-->
+<!--            {% for product in products %}-->
+<!--                <a href="{% url 'jewellery_details' product.id %}" class="bg-white shadow-lg rounded-md overflow-hidden shadow-md transition-transform duration-300 transform hover:scale-105">-->
+<!--                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-60 object-cover">-->
+<!--                    <div class="p-4">-->
+<!--                        <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>-->
+<!--                        <p class="text-lg text-gray-800 font-bold mb-2"><strong>&#2547;</strong> {{ product.price }}</p>-->
+<!--                        <p class="text-lg text-gray-800 font-bold mb-2">Rating: {{ product.rating }}</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    {% else %}-->
+<!--        <h1 class="text-3xl font-semibold mb-6">Nothing Found</h1>-->
+<!--    {% endif %}-->
+<!--</section>-->
+
+
+
+<!-- &lt;!&ndash; Product Grid &ndash;&gt;-->
+
+<!--<div class="container mx-auto px-4 py-8">-->
+<!--    {% if jewelries %}-->
+<!--    <h1 class="text-3xl font-semibold mb-6">All Products</h1>-->
+
+<!--    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">-->
+<!--        &lt;!&ndash; Product Cards &ndash;&gt;-->
+<!--        {% for product in jewelries %}-->
+<!--        <a href="{% url 'jewellery_details' product.id %}" class="bg-white shadow-lg rounded-md overflow-hidden shadow-md transition-transform duration-300 transform hover:scale-105">-->
+<!--            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-60 object-cover">-->
+<!--            <div class="p-4">-->
+<!--                <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>-->
+<!--                <p class="text-lg text-gray-800 font-bold mb-2"><strong>&#2547;</strong> {{ product.price }}</p>-->
+<!--                <p class="text-lg text-gray-800 font-bold mb-2">Retings: </p>-->
+<!--&lt;!&ndash;                    <a href="{% url 'jewellery_details' product.id %}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700" >View Details</a>&ndash;&gt;-->
+
+<!--            </div>-->
+<!--        </a>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--    {% else %}-->
+<!--    <h1 class="text-3xl font-semibold mb-6">Nothing Found</h1>-->
+<!--    {% endif %}-->
+
+<!--</div>-->
+
+
+
+<!--&lt;!&ndash; Filters Sidebar &ndash;&gt;-->
+<!--<aside class="w-full lg:w-1/4 px-4">-->
+<!--    <div class="mb-8">-->
+<!--        <h2 class="text-lg font-semibold mb-4">Subcategories</h2>-->
+<!--        &lt;!&ndash; Subcategory Filters &ndash;&gt;-->
+<!--        <ul>-->
+<!--            {% for subcategory in subcategories %}-->
+<!--                <li class="mb-2">-->
+<!--                    <a href="?subcategory={{ subcategory.name }}" class="inline-flex items-center">-->
+<!--                        <span class="ml-2">{{ subcategory.name }}</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            {% endfor %}-->
+<!--            &lt;!&ndash; Add more subcategory filters &ndash;&gt;-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Other Filters (Price Range, Ratings, etc.) &ndash;&gt;-->
+<!--    &lt;!&ndash; ... &ndash;&gt;-->
+<!--</aside>-->
+
+<!--&lt;!&ndash; Product List &ndash;&gt;-->
+<!--<section class="w-full lg:w-3/4 px-4">-->
+<!--    &lt;!&ndash; Display Products Here &ndash;&gt;-->
+<!--    {% if products %}-->
+<!--        <h1 class="text-3xl font-semibold mb-6 border-b border-black">All Products</h1>-->
+<!--        <hr>-->
+<!--        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">-->
+<!--            &lt;!&ndash; Product Cards &ndash;&gt;-->
+<!--            &lt;!&ndash; Product cards will go here based on applied filters &ndash;&gt;-->
+<!--            {% for product in products %}-->
+<!--                <a href="{% url 'jewellery_details' product.id %}" class="bg-white shadow-lg rounded-md overflow-hidden shadow-md transition-transform duration-300 transform hover:scale-105">-->
+<!--                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-60 object-cover">-->
+<!--                    <div class="p-4">-->
+<!--                        <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>-->
+<!--                        <p class="text-lg text-gray-800 font-bold mb-2"><strong>&#2547;</strong> {{ product.price }}</p>-->
+<!--                        <p class="text-lg text-gray-800 font-bold mb-2">Rating: {{ product.rating }}</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    {% else %}-->
+<!--        <h1 class="text-3xl font-semibold mb-6">Nothing Found</h1>-->
+<!--    {% endif %}-->
+<!--</section>-->
+
+
+
+
+
+<!--=========================================== Another Style of showing product details ============================================-->
+
+
+
+<!--&lt;!&ndash; Product Grid &ndash;&gt;-->
+<!--<div class="container mx-auto px-4 py-8">-->
+<!--    <h1 class="text-3xl font-semibold mb-6">All Products</h1>-->
+
+<!--    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">-->
+<!--        &lt;!&ndash; Product Cards &ndash;&gt;-->
+<!--        {% for product in jewelries %}-->
+<!--        <div class="bg-white shadow-lg rounded-md overflow-hidden">-->
+<!--            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-60 object-cover">-->
+<!--            <div class="p-4">-->
+<!--                <h2 class="text-xl font-semibold mb-2">{{ product.name }}</h2>-->
+<!--                <h2 class="text-xl font-semibold mb-2">{{ product.id }}</h2>-->
+<!--                <p class="text-gray-700 mb-4">{{ product.description }}</p>-->
+<!--                <p class="text-lg text-gray-800 font-bold mb-2">${{ product.price }}</p>-->
+<!--                <button data-modal-toggle="{{ product.id }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">View Details</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Main modal &ndash;&gt;-->
+<!--{% for product in jewelries %}-->
+<!--<div id="{{ product.id }}" tabindex="-1" aria-hidden="true"-->
+<!--    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">-->
+<!--    <div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md max-h-[80vh] overflow-y-auto">-->
+
+<!--        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">-->
+
+<!--            &lt;!&ndash; Product Image &ndash;&gt;-->
+<!--            <div class="overflow-hidden">-->
+<!--                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full">-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Product Description &ndash;&gt;-->
+<!--            <div>-->
+<!--                <h1 class="text-3xl font-semibold mb-4">{{product.name}}</h1>-->
+<!--&lt;!&ndash;                <h1 class="text-3xl font-semibold mb-4">{{product.id}}</h1>&ndash;&gt;-->
+<!--                <p class="text-gray-700 mb-6">{{product.description}}</p>-->
+
+<!--                <p class="text-lg text-gray-800 font-bold mb-2">{{product.price}}</p>-->
+<!--                <p class="text-lg text-gray-800 font-bold mb-2">In stock: {{product.stock_amount}}</p>-->
+
+<!--                <div class="mb-6">-->
+<!--                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity:</label>-->
+<!--                    <input type="number" id="quantity" name="quantity" class="w-1/4 px-4 py-2 border rounded-md"-->
+<!--                        value="1">-->
+<!--                </div>-->
+
+<!--                <button class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700">Add to Cart</button>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Product Reviews Section &ndash;&gt;-->
+<!--        <div class="mt-8">-->
+<!--            <h2 class="text-xl font-semibold mb-4">Product Reviews</h2>-->
+<!--            <div class="border rounded-md p-4">-->
+<!--                &lt;!&ndash; Display product reviews here &ndash;&gt;-->
+<!--                <p>No reviews yet.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+<!--{% endfor %}-->
+
+
+
+
+
+{% endblock %}

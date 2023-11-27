@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+        Index
+{% endblock title %}| D&D
+
+
+{% block content %}
+
+This is from index.html
+{% if request.user.is_authenticated %}
+{{user.username}}
+{{user.email}}
+{{user.first_name}}
+{{user.last_name}}
+{{user.phone_number}}
+{{user.address}}
+{{user.gender}}
+
+{% endif %}
+
+<div class="relative">
+    <img src="media/images/homeBg.jpg" alt="" class="w-full h-auto">
+    <div class="absolute inset-0 ms-72 flex items-center justify-start">
+        <div class=" text-white">
+            <span class="ms-1 text-gray-500">D&D</span>
+            <h1 class="mb-10 sm:text-2xl md:text-6xl font-bold text-black">New Collection</h1>
+            <a href="{% url 'dashboard' %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Show more</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="flex items-center justify-center gap-8 flex-wrap mt-10">
+
+<div class="w-96 h-52 max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-white dark:border-white shadow-lg overflow-hidden relative">
+    <a href="{% url 'jewellery' %}" class="block relative group">
+        <img class="rounded-t-xl w-full h-52" src="media\images\Jewellery-box.jpg" alt="product image" />
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-opacity-60 bg-white">
+            <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-black">Jewellery</h5>
+        </div>
+    </a>
+</div>
+
+<div class="w-96  max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-white dark:border-white shadow-lg overflow-hidden relative">
+    <a href="{% url 'bedsheet' %}" class="block relative group">
+        <img class="rounded-t-xl w-full h-52" src="media/images/bedsheet.webp" alt="product image" />
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-opacity-60 bg-white">
+            <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-black">Bed Sheet</h5>
+        </div>
+    </a>
+</div>
+    <div class="w-96 h-52 max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-white dark:border-white shadow-lg overflow-hidden relative">
+    <a href="#" class="block relative group">
+        <img class="rounded-t-xl w-full h-52" src="media\images\menscloth.jpg" alt="product image" />
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-opacity-60 bg-white">
+            <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-black">Men's</h5>
+        </div>
+    </a>
+</div>
+
+<div class="w-96  max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-white dark:border-white shadow-lg overflow-hidden relative">
+    <a href="#" class="block relative group">
+        <img class="rounded-t-xl w-full h-52" src="media/images/womenscloth.jpg" alt="product image" />
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-opacity-60 bg-white">
+            <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-black">Women's</h5>
+        </div>
+    </a>
+</div>
+</div>
+
+
+<div class="my-96"></div>
+{% endblock content %}
